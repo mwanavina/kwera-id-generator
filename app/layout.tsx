@@ -23,8 +23,14 @@ export const metadata: Metadata = {
   title: 'KWERA ID Generator',
   description:
     'Enter a member\u2019s details to build their KWERA ID. Finance One, Educate All.',
-  generator: 'v0.app',
-}
+  generator: 'v0.app',  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/apple-icon.png',
+  },
+  manifest: '/site.webmanifest',}
 
 export const viewport: Viewport = {
   colorScheme: 'dark',
