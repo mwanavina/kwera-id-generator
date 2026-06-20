@@ -3,6 +3,8 @@ import { IdGenerator } from '@/components/id-generator'
 import { FeedbackCard } from '@/components/feedback-card'
 import { getHelpfulCount } from '@/app/actions'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Page() {
   const initialCount = await getHelpfulCount()
 
