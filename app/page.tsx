@@ -51,9 +51,9 @@ export default async function Page() {
             gka@kwera.com
           </a>
           <br />
-          Your ID log is saved on this device. The feedback total is shared across
+          {/* Your ID log is saved on this device. The feedback total is shared across
           everyone using this page.
-          <br />
+          <br /> */}
           <span className="mt-1.5 inline-block">
             Developed by{' '}
             <span className="font-semibold text-text-dim">Mark Mwanavina</span> ·
