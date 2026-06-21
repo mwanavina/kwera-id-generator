@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import type { ChangeEvent } from 'react'
-import { Copy, Save, Check, X } from 'lucide-react'
+import { Copy, Save, Check, X, Play } from 'lucide-react'
 
 const HISTORY_KEY = 'kwera-id-log'
 
@@ -116,6 +116,7 @@ export function IdGenerator() {
   const [copied, setCopied] = useState<boolean>(false)
   const [saved, setSaved] = useState<boolean>(false)
   const [copiedIdx, setCopiedIdx] = useState<number | null>(null)
+  const [isTutorialOpen, setIsTutorialOpen] = useState<boolean>(false)
 
   const result = computeId(form)
 
@@ -184,6 +185,38 @@ export function IdGenerator() {
 
   return (
     <div className="flex flex-col gap-[18px]">
+      <button
+        type="button"
+        onClick={() => setIsTutorialOpen(true)}
+        aria-label="Open tutorial"
+        className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full border border-cyan/40 bg-cyan px-4 py-3 text-sm font-semibold text-[#06222b] shadow-lg shadow-cyan/10 transition hover:scale-[1.02]"
+      >
+        <Play size={16} />
+        How it works
+      </button>
+
+      {isTutorialOpen ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-2 backdrop-blur-sm sm:p-4">
+          <div className="relative flex h-full w-full max-w-7xl items-center justify-center overflow-hidden rounded-2xl border border-border bg-background">
+            <button
+              type="button"
+              onClick={() => setIsTutorialOpen(false)}
+              aria-label="Close tutorial"
+              className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background/90 text-text-dim transition hover:text-foreground"
+            >
+              <X size={18} />
+            </button>
+            <div className="flex h-full w-full items-center justify-center overflow-hidden p-2 sm:p-4">
+              <img
+                src="/Kwera_ID_Generator_Tutorial.gif"
+                alt="KWERA ID generator tutorial"
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      ) : null}
+
       {/* Member details */}
       <section className="rounded-2xl border border-border bg-gradient-to-b from-card to-card-soft p-[22px]">
         <h2 className="mb-4 font-heading text-sm font-medium uppercase tracking-wide text-text-dim">
