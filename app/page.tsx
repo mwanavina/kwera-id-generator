@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { Eye } from 'lucide-react'
 import { IdGenerator } from '@/components/id-generator'
 import { FeedbackCard } from '@/components/feedback-card'
 import { getHelpfulCount, recordPageVisit } from '@/app/actions'
@@ -56,7 +57,8 @@ export default async function Page() {
           {/* Your ID log is saved on this device. The feedback total is shared across
           everyone using this page.
           <br /> */}
-          <span className="mt-1.5 inline-block">
+          <span className="mt-1.5 inline-flex items-center gap-1.5">
+            <Eye size={12} className="text-text-dim" aria-hidden="true" />
             <span className="font-semibold text-text-dim">{usageCount}</span> people have used this tool
           </span>
           <br />
