@@ -1,12 +1,14 @@
 import Image from 'next/image'
 import { IdGenerator } from '@/components/id-generator'
 import { FeedbackCard } from '@/components/feedback-card'
-import { getHelpfulCount } from '@/app/actions'
+import { getHelpfulCount, recordPageVisit } from '@/app/actions'
 
 export const dynamic = 'force-dynamic'
 
 export default async function Page() {
-  const initialCount = await getHelpfulCount()
+  const [initialCount, visitResult] = await Promise.all([getHelpfulCount(), recordPageVisit()])
+
+  const usageCount = visitResult.ok ? visitResult.count : 0
 
   return (
     <main className="relative px-4 pb-16 pt-7">
@@ -54,6 +56,10 @@ export default async function Page() {
           {/* Your ID log is saved on this device. The feedback total is shared across
           everyone using this page.
           <br /> */}
+          <span className="mt-1.5 inline-block">
+            <span className="font-semibold text-text-dim">{usageCount}</span> people have used this tool
+          </span>
+          <br />
           <span className="mt-1.5 inline-block">
             Developed by{' '}
             <span className="font-semibold text-text-dim">Mark Mwanavina</span> ·
